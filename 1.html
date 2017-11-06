@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="vue.js"></script>
+</head>
+<body>
+
+	<div id="root">
+		{{message}}
+	</div>
+
+	<script>
+		var vm = new Vue({
+		  el: '#root',
+		  data: {
+		    message: '123'
+		  }
+		})
+
+		// data中的message迅速跑的被更改了
+		// 但是页面上dom的同步，不会立即执行，会放在下一个tick中来执行
+		vm.message = 'new message'
+		
+		// 真正对dom的同步不是立即执行的，所以下面这条语句输出的是123
+		console.log(vm.$el.textContent) 
+
+		// 如果想正确的使用dom中的内容，应该在nexttick函数中再使用dom
+		Vue.nextTick(function () {
+			console.log(vm.$el.textContent) 
+		})
+	</script>
+</body>
+</html>

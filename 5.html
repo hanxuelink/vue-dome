@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="vue.js"></script>
+	<script src="velocity.js"></script>
+	<style>
+		.v-enter {
+			opacity: 0
+		}
+		.v-enter-active {
+			transition: all 1s;
+			animation: bounce-in .5s;
+		}
+		.v-leave-active {
+			animation: bounce-in .5s reverse;
+		}
+		@keyframes bounce-in {
+			0% {
+			    transform: scale(0);
+			    transform-origin: left center;
+			}
+			50% {
+			    transform: scale(1.5);
+			    transform-origin: left center;
+			}
+			100% {
+			    transform: scale(1);
+			    transform-origin: left center;
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<div id="demo">
+		<transition>
+		  <div v-if="show" key="dell">
+		     show is true
+		  </div>
+		  <div v-else key="lee">
+		  		show is false
+		  </div>
+		</transition>
+	</div>
+
+	<script>
+		var vm = new Vue({
+			el: '#demo',
+			data: {
+				show:true
+			},
+			methods:{
+				
+			}
+		})
+	</script>
+</body>
+</html>

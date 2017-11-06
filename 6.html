@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="vue.js"></script>
+	<script src="velocity.js"></script>
+	<style>
+		.v-enter {
+			opacity: 0
+		}
+		.v-enter-active {
+			transition: all 1s;
+			animation: bounce-in .5s;
+		}
+		.v-leave-active {
+			animation: bounce-in .5s reverse;
+		}
+		@keyframes bounce-in {
+			0% {
+			    transform: scale(0);
+			    transform-origin: left center;
+			}
+			50% {
+			    transform: scale(1.5);
+			    transform-origin: left center;
+			}
+			100% {
+			    transform: scale(1);
+			    transform-origin: left center;
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<div id="demo">
+		<transition mode="out-in">
+			<component :is="view"></component>
+		</transition>
+		<button @click="handleClick">change</button>
+	</div>
+
+	<script>
+		new Vue({
+		  el: '#demo',
+		  data: {
+		    view: 'v-a'
+		  },
+		  methods: {
+		  	handleClick(){
+		  		this.view = (this.view == "v-a") ? "v-b" : "v-a"; 
+		  	}
+		  },
+		  components: {
+		    'v-a': {
+		      template: '<div>Component A</div>'
+		    },
+		    'v-b': {
+		      template: '<div>Component B</div>'
+		    }
+		  }
+		})
+	</script>
+</body>
+</html>

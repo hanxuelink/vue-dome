@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="vue.js"></script>
+	<style>
+		.v-leave-active {
+			transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+		}
+		.v-leave {
+			opacity: 1;
+		}
+		.v-leave-to {
+			opacity: 0;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="demo">
+		<button v-on:click="show = !show">
+			Toggle
+		</button>
+		<transition>
+			<p v-if="show">hello</p>
+		</transition>
+	</div>
+
+	<script>
+
+		//第一针：样式opacity:1 transition:opacity 0.5s
+		//第二针：opactity 0 transition:opacity 0.5s
+		//动画结束 恢复到最原始的状态
+
+		var vm = new Vue({
+			el: '#demo',
+			data: {
+				show:true
+			}
+		})
+
+		
+	</script>
+</body>
+</html>
